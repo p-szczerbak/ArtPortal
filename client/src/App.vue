@@ -1,20 +1,5 @@
 <template>
   <v-app>
-    <!--<v-toolbar app>-->
-
-      <!--<v-toolbar-title class="headline text-uppercase">-->
-        <!--<span>Art</span>-->
-        <!--<span class="font-weight-light">PORTAL</span>-->
-      <!--</v-toolbar-title>-->
-      <!--<v-spacer></v-spacer>-->
-      <!--<v-btn-->
-        <!--flat-->
-        <!--href=""-->
-        <!--target="_blank"-->
-      <!--&gt;-->
-        <!--<span class="mr-2">Latest Release</span>-->
-      <!--</v-btn>-->
-    <!--</v-toolbar>-->
       <v-container>
         <v-content>
           <router-view/>
@@ -26,12 +11,16 @@
 <script>
 import HelloWorld from './components/HelloWorld'
 import LogIn from './components/LogIn'
+import WorkOfArtList from './components/WorkOfArtList'
+import AddWorkOfArt from './components/AddWorkOfArt'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    LogIn
+    LogIn,
+    WorkOfArtList,
+    AddWorkOfArt
   },
   data () {
     return {

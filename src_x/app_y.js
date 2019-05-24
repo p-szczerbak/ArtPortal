@@ -7,6 +7,7 @@ const swagger = require('swagger-express-middleware');
 const Middleware = swagger.Middleware;
 const MemoryDataStore = swagger.MemoryDataStore;
 const Resource = swagger.Resource;
+const db = require('../models/index.js');
 
 let app = express();
 let middleware = new Middleware(app);
@@ -16,21 +17,46 @@ let middleware = new Middleware(app);
 let swaggerFile = path.join(__dirname, 'ArtPortal2.yaml');
 middleware.init(swaggerFile, (err) => {
 
+
+  // sequelize db
+  // db.WorkOfArt.create({ name: 'foo', description: 'bar', author: 'this is author', image: 'image/path' }).then(art => {
+  //   // console.log(art);
+  //   });
+
+  let workOfArtList = [
+    {
+        name: 'awesome suclpture',
+        description: 'fvdfvgvgbbg',
+        image: 'path/to/image',
+        author: 'Klimt',
+        type: 'sculpture'
+  },
+      {
+        name: 'awesome suclpture',
+        description: 'fvdfvgvgbbg',
+        image: 'path/to/image',
+        author: 'Klimt',
+        type: 'sculpture'
+  },
+      {
+        name: 'awesome suclpture',
+        description: 'fvdfvgvgbbg',
+        image: 'path/to/image',
+        author: 'Klimt',
+        type: 'sculpture'
+  }
+  ];
+
   // Create a custom data store with some initial mock data
   let myDB = new MemoryDataStore();
   // myDB.save(
-  //   new Resource('/pets/Lassie', { name: 'Lassie', type: 'dog', tags: ['brown', 'white']}),
-  //   new Resource('/pets/Clifford', { name: 'Clifford', type: 'dog', tags: ['red', 'big']}),
-  //   new Resource('/pets/Garfield', { name: 'Garfield', type: 'cat', tags: ['orange']}),
-  //   new Resource('/pets/Snoopy', { name: 'Snoopy', type: 'dog', tags: ['black', 'white']}),
-  //   new Resource('/pets/Hello%20Kitty', { name: 'Hello Kitty', type: 'cat', tags: ['white']})
+  //   new Resource('/worksOfArt/1', { name: 'Lassie', description: 'dog', image: '../assets/sculpture.jpg', author: 'DaVinci'}),
+  //   new Resource('/worksOfArt/3', { name: 'Garfield', description: 'cat', image: '../assets/sculpture.jpg', author: 'Paulina S.'}),
+  //   new Resource('/worksOfArt/4', { name: 'Snoopy', description: 'dog', image: '../assets/sculpture.jpg', author: 'Szpieg z krainy deszczowców'}),
+  //   new Resource('/worksOfArt/5', { name: 'Hello Kitty', description: 'cat', image: '../assets/sculpture.jpg', author: 'Magda M.'})
   // );
-  myDB.save(
-    new Resource('/worksOfArt/1', { name: 'Lassie', description: 'dog', image: '../assets/sculpture.jpg', author: 'DaVinci'}),
-    new Resource('/worksOfArt/3', { name: 'Garfield', description: 'cat', image: '../assets/sculpture.jpg', author: 'Paulina S.'}),
-    new Resource('/worksOfArt/4', { name: 'Snoopy', description: 'dog', image: '../assets/sculpture.jpg', author: 'Szpieg z krainy deszczowców'}),
-    new Resource('/worksOfArt/5', { name: 'Hello Kitty', description: 'cat', image: '../assets/sculpture.jpg', author: 'Magda M.'})
-  );
+
+  myDB.save(Resource.parse(workOfArtList));
 
   // Enable Express' case-sensitive and strict options
   app.enable('case sensitive routing');
@@ -46,7 +72,7 @@ middleware.init(swaggerFile, (err) => {
       // Serve the Swagger API from "/swagger/api" instead of "/api-docs"
       apiPath: '/swagger/api',
 
-      // Disable serving the "PetStore.yaml" file
+      // Disable serving the "ArtPortal.yaml" file
       rawFilesPath: false
     }
   ));
@@ -116,7 +142,7 @@ middleware.init(swaggerFile, (err) => {
           workOfArt = req.body;
         }
 
-        // Save the pet with the new URL
+        // Save the work of art with the new URL
         myDB.save(new Resource('/worksOfArt', req.body.name, workOfArt), (err, workOfArt) => {
           // Send the response
           res.json(workOfArt.data);
@@ -140,7 +166,7 @@ middleware.init(swaggerFile, (err) => {
   });
 
   app.listen(8081, () => {
-    console.log('The Swagger Pet Store is now running at http://localhost:8081');
+    console.log('The Swagger Art Portal is now running at http://localhost:8081');
   });
 });
 

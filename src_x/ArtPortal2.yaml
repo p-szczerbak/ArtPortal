@@ -117,7 +117,7 @@ parameters:
   artName:
     name: artName
     in: path
-    description: Name of the pet
+    description: Name of the workOfArt
     required: true
     type: string
 
@@ -138,7 +138,7 @@ paths:
           headers:
             last-modified:
               type: string
-              description: The date/time that a pet was last modified
+              description: The date/time that a workOfArt was last modified
 
     delete:
       description: Deletes all worksOfArt, optionally filtered by one or more criteria
@@ -154,63 +154,63 @@ paths:
               $ref: "#/definitions/workOfArt"
 
     post:
-      description: Creates a new pet in the store
+      description: Creates a new workOfArt in the store
       operationId: addWorkOfArt
       parameters:
-        - name: pet
+        - name: workOfArt
           in: body
-          description: The pet to add to the store
+          description: The workOfArt to add to the store
           required: true
           schema:
             $ref: "#/definitions/workOfArt"
       responses:
         201:
-          description: Returns the newly-added pet
+          description: Returns the newly-added workOfArt
           schema:
             $ref: "#/definitions/workOfArt"
           headers:
             Location:
               type: string
-              description: The URL of the newly-added pet
+              description: The URL of the newly-added workOfArt
 
   /worksOfArt/{artName}:
     parameters:
       - $ref: "#/parameters/artName"
 
     get:
-      description: Returns a pet by name
-      operationId: findPetByName
+      description: Returns a workOfArt by name
+      operationId: findworkOfArtByName
       responses:
         default:
-          description: Returns the pet data
+          description: Returns the workOfArt data
           schema:
             $ref: "#/definitions/workOfArt"
           headers:
             last-modified:
               type: string
-              description: The date/time that the pet was last modified
+              description: The date/time that the workOfArt was last modified
 
     delete:
-      description: Deletes a single pet based on the name supplied
-      operationId: deletePet
+      description: Deletes a single workOfArt based on the name supplied
+      operationId: deleteworkOfArt
       responses:
         default:
-          description: Returns the pet that was deleted
+          description: Returns the workOfArt that was deleted
           schema:
             $ref: "#/definitions/workOfArt"
 
     patch:
-      description: Updates a pet by name
+      description: Updates a workOfArt by name
       parameters:
-        - name: pet
+        - name: workOfArt
           in: body
-          description: The updated pet info
+          description: The updated workOfArt info
           required: true
           schema:
             $ref: "#/definitions/workOfArt"
       responses:
         default:
-          description: Returns the updated pet data
+          description: Returns the updated workOfArt data
           schema:
             $ref: "#/definitions/workOfArt"
 
@@ -219,8 +219,8 @@ paths:
       - $ref: "#/parameters/artName"
 
     post:
-      description: Upload a new pet photo
-      operationId: addPetPhoto
+      description: Upload a new workOfArt photo
+      operationId: addworkOfArtPhoto
       consumes:
         - multipart/form-data
       parameters:
@@ -242,7 +242,7 @@ paths:
           type: string
         - name: photo
           in: formData
-          description: The pet photo
+          description: The workOfArt photo
           required: true
           type: file
           minLength: 1
@@ -269,7 +269,7 @@ paths:
               description: The URL of the newly-added photo
 
     get:
-      description: Get a list of the photos for a pet
+      description: Get a list of the photos for a workOfArt
       responses:
         200:
           description: Returns the list of photos
@@ -300,8 +300,8 @@ paths:
         format: int32
 
     get:
-      description: Gets a pet photo
-      operationId: getPetPhoto
+      description: Gets a workOfArt photo
+      operationId: getworkOfArtPhoto
       produces:
         - image/jpeg
         - image/gif
@@ -309,13 +309,13 @@ paths:
         - image/bmp
       responses:
         default:
-          description: Returns the pet photo
+          description: Returns the workOfArt photo
           schema:
             type: file
 
     delete:
-      description: Deletes a pet photo
-      operationId: deletePetPhoto
+      description: Deletes a workOfArt photo
+      operationId: deleteworkOfArtPhoto
       responses:
         default:
           description: The photo was deleted successfully
@@ -326,7 +326,7 @@ paths:
         - text/html
       responses:
         default:
-          description: The Swagger Pet Store homepage :)
+          description: The Swagger workOfArt Store homepage :)
           schema:
             type: file
             default:

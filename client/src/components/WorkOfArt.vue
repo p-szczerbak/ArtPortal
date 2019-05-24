@@ -35,7 +35,7 @@
 
         <v-card-title primary-title>
           <div>
-            <h3 class="headline mb-0">{{name}}</h3>
+            <h3 class="headline mb-0">{{title}}</h3>
             <div> {{author}}  </div>
           </div>
         </v-card-title>
@@ -54,7 +54,7 @@ import LogIn from './LogIn.vue'
 export default {
   components: LogIn,
   name: 'WorkOfArt',
-  props: ['name', 'description', 'image', 'author'],
+  props: ['title', 'description', 'image', 'author'],
   data: () => ({
   })
 }
