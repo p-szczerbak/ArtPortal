@@ -268,6 +268,25 @@ export default {
       }
       const { data } = await WorksOfArtService.addWorkOfArt(postData)
       console.log('resp ', data)
+
+      // Parse a SPARQL query to a JSON object
+      var SparqlParser = require('sparqljs').Parser
+      var parser = new SparqlParser()
+      var parsedQuery = parser.parse(
+        'PREFIX foaf: <http://localhost:8081/Disney/> ' +
+        'SELECT ?MickeyType { foaf:Mickey foaf:type ?MickeyType . }')
+      // 'SELECT * { ?mickey foaf:name "Mickey Mouse"@en; foaf:knows ?other. }')
+
+      console.log(parsedQuery)
+      const { dataTurtle } = await WorksOfArtService.addWorkOfArtTurtle(parsedQuery)
+      console.log('turtle ', dataTurtle)
+
+      // Regenerate a SPARQL query from a JSON object
+      var SparqlGenerator = require('sparqljs').Generator
+      var generator = new SparqlGenerator()
+      parsedQuery.variables = ['?mickey']
+      var generatedQuery = generator.stringify(parsedQuery)
+      console.log(generatedQuery)
     }
   }
 }

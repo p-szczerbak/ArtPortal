@@ -1,30 +1,12 @@
 // For sequelize and swagger-sequelize:
-'use strict';
+'use strict'
 const swaggerSequelize = require('../models/swaggerSequelize')
+const { LoggerAspect } = require('../aspects/LoggerAspect')
+const { Advised } = require('aspect.js')
+const store = require('../../app')
+const namedNode = require('../../app')
 
-const {beforeMethod, afterMethod, Advised} = require('aspect.js')
-
-
-class LoggerAspect {
-  @beforeMethod({
-    methodNamePattern: /.*/,
-    classNamePattern: /WorksOfArt/
-  })
-  beforeLogger (meta, ...args) {
-    console.log(`Invoked XXXXX with arguments: YYYY`)
-  }
-  @afterMethod({
-    methodNamePattern: /^create$/,
-    classNamePattern: /^WorksOfArt$/
-  })
-  afterCreate(meta) {
-    let result = meta.method.result;
-    console.log(`Retrieving SUPER FUNCTION has been succeed`);
-    // console.log(`Retrieving ${result.isbn} - ${result.name} has been succeed`);
-  }
-}
-
-@Advised({ bar: 42 })
+@Advised()
 class WorksOfArt {
   constructor () {
     // Setup Sequelize-ORM for "WorkOfArt" based on Swagger API specification:
@@ -59,35 +41,28 @@ class WorksOfArt {
   // The following controller methods are exported to be used by the API:
 
   create (req, res) {
-    console.time('<<<<<< create()') // Start time measurement
     const reqWorkOfArt = req.body
-    console.log('\n>>>>>> create() in controller worksOfArt.js')
-    console.log('reqWorkOfArt:', reqWorkOfArt)
-    // res.status(501).json({message:"NOT YET IMPLEMENTED"});
-
     // Create a new workOfArt, put it into the database and respond with the newly created workOfArt:
     this.WorkOfArtModel.create(reqWorkOfArt).then((createdWorkOfArt) => {
       res.status(201).json(createdWorkOfArt)
-      console.timeEnd('<<<<<< create()') // End time measurement
     })
   };
 
   readAll (req, res) {
-    console.time('<<<<<< readAll()') // Start time measurement
-    console.log('\n>>>>>> readAll() in controller worksOfArt.js')
-    // res.status(501).json({message:"NOT YET IMPLEMENTED"});
     this.WorkOfArtModel.findAll().then((worksOfArt) => {
       console.log('Controller: worksOfArt.js; Function: readAll(): Responding with an array containing ' + worksOfArt.length + ' elements.')
+      // const mickey = store.getQuads(namedNode('http://localhost:8081/Disney/Mickey'), null, null)[0];
+      const mickey = store.getQuads(namedNode('http://localhost:8081/Disney/Mickey'), null, null)[0];
+      console.log(mickey);
       res.status(200).json(worksOfArt)
-      console.timeEnd('<<<<<< readAll()') // End time measurement
     })
   };
 
   readById (req, res) {
-    console.time('<<<<<< readById()') // Start time measurement
-    console.log('\n>>>>>> readById() in controller worksOfArt.js')
+    // console.time('<<<<<< readById()') // Start time measurement
+    // console.log('\n>>>>>> readById() in controller worksOfArt.js')
     const reqId = req.swagger.params.id.value
-    console.log('Requested id:', reqId)
+    // console.log('Requested id:', reqId)
     // res.status(501).json({message:"NOT YET IMPLEMENTED"});
 
     // Search workOfArt with provided reqId:
@@ -98,19 +73,19 @@ class WorksOfArt {
         // WorkOfArt with reqId could not be found
           console.log('WorkOfArt with requested id ' + reqId + ' could NOT be found.')
           res.status(404).json({message: 'The requested workOfArt with id ' + reqId + ' could not be found. You may try another id.'})
-          console.timeEnd('<<<<<< readById()') // End time measurement
+          // console.timeEnd('<<<<<< readById()') // End time measurement
         } else {
           console.log('WorkOfArt with requested id ' + reqId + ' is found. Responding with object')
           console.log(foundWorkOfArt.dataValues)
           res.json(foundWorkOfArt)
-          console.timeEnd('<<<<<< readById()') // End time measurement
+          // console.timeEnd('<<<<<< readById()') // End time measurement
         }
       })
   };
 
   deleteById (req, res) {
-    console.time('<<<<<< deleteById()') // Start time measurement
-    console.log('\n>>>>>> deleteById() in controller worksOfArt.js')
+    // console.time('<<<<<< deleteById()') // Start time measurement
+    // console.log('\n>>>>>> deleteById() in controller worksOfArt.js')
     const reqId = req.swagger.params.id.value
     console.log('Requested id:', reqId)
     // res.status(501).json({message:"NOT YET IMPLEMENTED"});
@@ -122,7 +97,7 @@ class WorksOfArt {
         // Strange ... the workOfArt could not be deleted:
           console.log('WorkOfArt with requested id ' + reqId + ' could NOT be deleted!')
           res.status(404).json({message: 'The requested workOfArt with id ' + reqId + ' could not be deleted. You may try another id.'})
-          console.timeEnd('<<<<<< deleteById()') // End time measurement
+          // console.timeEnd('<<<<<< deleteById()') // End time measurement
         } else {
         // Successfully deleted ...
           console.log('WorkOfArt with requested id ' + reqId + ' is deleted! Number of deleted objects: ' + destoryedCount)
@@ -130,14 +105,14 @@ class WorksOfArt {
             success: destoryedCount,
             description: 'WorkOfArt with id ' + reqId + ' is deleted.'
           })
-          console.timeEnd('<<<<<< deleteById()') // End time measurement
+          // console.timeEnd('<<<<<< deleteById()') // End time measurement
         }
       })
   };
 
   updateOrCreate (req, res) {
-    console.time('<<<<<< updateOrCreate()') // Start time measurement
-    console.log('\n>>>>>> updateOrCreate() in controller worksOfArt.js')
+    // console.time('<<<<<< updateOrCreate()') // Start time measurement
+    // console.log('\n>>>>>> updateOrCreate() in controller worksOfArt.js')
     const reqId = req.swagger.params.id.value
     const reqWorkOfArt = req.body
     console.log('Requested id:', reqId)
@@ -178,7 +153,7 @@ class WorksOfArt {
                   })
               } else {
               // PROBLEM: Id could not be updated!
-                console.timeEnd('<<<<<< updateOrCreate()') // End time measurement
+              //   console.timeEnd('<<<<<< updateOrCreate()') // End time measurement
                 throw new Error('ERROR in updateOrCreate(): New workOfArt with id ' + createdId + ' could not be updated to new id ' + reqId)
               }
             })
@@ -225,9 +200,5 @@ class WorksOfArt {
 }
 
 let woa = new WorksOfArt()
-// module.exports = {
-//   readAll: woa.readAll,
-//   create: woa.create
-// }
 module.exports.readAll = woa.readAll
 module.exports.create = woa.create

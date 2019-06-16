@@ -1,0 +1,182 @@
+[
+  {
+    "@id": "http://example.org/#beksinski_z",
+    "@type": [
+      "http://dbpedia.org/ontology/Artist",
+      "http://dbpedia.org/ontology/Customer"
+    ],
+    "http://xmlns.com/foaf/0.1/firstName": [
+      {
+        "@value": "Zbigniew"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/lastName": [
+      {
+        "@value": "Beksiński"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/mbox": [
+      {
+        "@id": "mailto:beksinskiz@example.com"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/name": [
+      {
+        "@value": "beksinski_z"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/phone": [
+      {
+        "@id": "tel:+1.555.222.1234"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/#gustav_klimt",
+    "@type": [
+      "http://dbpedia.org/ontology/Artist",
+      "http://dbpedia.org/ontology/Customer"
+    ],
+    "http://xmlns.com/foaf/0.1/firstName": [
+      {
+        "@value": "Gustav"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/lastName": [
+      {
+        "@value": "Klimt"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/mbox": [
+      {
+        "@id": "mailto:klimt@example.com"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/name": [
+      {
+        "@value": "gustav_klimt"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/phone": [
+      {
+        "@id": "tel:+1.222.111.9999"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/#jkowalski",
+    "@type": [
+      "http://dbpedia.org/ontology/Artist",
+      "http://dbpedia.org/ontology/Customer"
+    ],
+    "http://xmlns.com/foaf/0.1/firstName": [
+      {
+        "@value": "Jan"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/lastName": [
+      {
+        "@value": "Kowalski"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/mbox": [
+      {
+        "@id": "mailto:jkowalski@example.com"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/name": [
+      {
+        "@value": "jkowalski"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/phone": [
+      {
+        "@id": "tel:+1.555.222.2222"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/#workOfArt/1",
+    "@type": [
+      "http://dbpedia.org/resource/Sculpture"
+    ],
+    "http://purl.org/dc/elements/1.1/creator": [
+      {
+        "@value": "jkowalski"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/description": [
+      {
+        "@value": "Photograph taken at 6:00 am on Corfu with two models"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/title": [
+      {
+        "@value": "Walking on the Beach in Corfu"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/#workOfArt/2",
+    "@type": [
+      "http://dbpedia.org/resource/Painting"
+    ],
+    "http://purl.org/dc/elements/1.1/creator": [
+      {
+        "@value": "gustav_klimt"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/description": [
+      {
+        "@value": "Beautiful painting with gold paint"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/title": [
+      {
+        "@value": "The kiss"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/#workOfArt/3",
+    "@type": [
+      "http://dbpedia.org/resource/Drawing"
+    ],
+    "http://purl.org/dc/elements/1.1/creator": [
+      {
+        "@value": "beksinski_z"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/description": [
+      {
+        "@value": "The nightmare"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/title": [
+      {
+        "@value": "Untitled 'ZIES'"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/#workOfArt/4",
+    "@type": [
+      "http://dbpedia.org/resource/Painting"
+    ],
+    "http://purl.org/dc/elements/1.1/creator": [
+      {
+        "@value": "beksinski_z"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/description": [
+      {
+        "@value": "Some stone islands"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/title": [
+      {
+        "@value": "Untitled 'Stone Islands'"
+      }
+    ]
+  }
+]

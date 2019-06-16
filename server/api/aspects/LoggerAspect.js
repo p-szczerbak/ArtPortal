@@ -1,25 +1,31 @@
-import {beforeMethod, afterResolve, afterReject} from 'aspect.js'
+const {beforeMethod, afterMethod} = require('aspect.js')
 
-class LoggerAspect {
+export class LoggerAspect {
   @beforeMethod({
     methodNamePattern: /.*/,
     classNamePattern: /WorksOfArt/
   })
-  beforeLogger (meta, ...args) {
-    console.log(`Invoked ${meta.name} with arguments: ${args.join(', ')}`)
+  beforeAll (meta, ...args) {
+    console.log(`Invoked ${meta.className}.${meta.method.name} with arguments: ${meta.method.args.join(', ')}.`)
+    console.time(`<<<<<< ${meta.method.name}`) // Start time measurement
+    console.log(`\n>>>>>> ${meta.method.name}() in controller ${meta.className}`)
   }
-  @afterResolve({
+  @afterMethod({
     methodNamePattern: /.*/,
-    classNamePattern: /WorksOfArt/
+    classNamePattern: /^WorksOfArt$/
   })
-  afterResolveLogger (meta) {
-    console.log(`The invocation of ${meta.name}`)
+  afterAll (meta) {
+    let result = meta.method.result
+    console.timeEnd(`<<<<<< ${meta.method.name}`) // End time measurement
   }
-  @afterReject({
-    methodNamePattern: /.*/,
-    classNamePattern: /WorksOfArt/
+  @afterMethod({
+    methodNamePattern: /^create$/,
+    classNamePattern: /^WorksOfArt$/
   })
-  afterRejectLogger (meta) {
-    console.log(`Error during the invocation of ${meta.name}`)
+  afterCreate (meta) {
+    // let result = meta.method.result
+    let req = meta.method.args[0].body
+    console.log('request: ', req)
+    // console.log(`Retrieving ${result.isbn} - ${result.name} has been succeed`);
   }
 }

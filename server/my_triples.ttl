@@ -1,0 +1,62 @@
+@base <http://example.org#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rel: <http://www.perceive.net/schemas/relationship/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+
+# a is equal to http://www.w3.org/1999/02/22-rdf-syntax-ns#type .
+
+jkowalski
+	a dbo:Artist ;
+	a dbo:Customer ;
+	foaf:name "jkowalski" ;
+	foaf:firstName "Jan" ;
+	foaf:lastName "Kowalski" ;
+	foaf:phone <tel:+1.555.222.2222> ;
+	foaf:mbox <mailto:jkowalski@example.com> .
+
+<#gustav_klimt>
+	a dbo:Artist ;
+	a dbo:Customer ;
+	foaf:name "gustav_klimt" ;
+	foaf:firstName "Gustav" ;
+	foaf:lastName "Klimt" ;
+	foaf:phone <tel:+1.222.111.9999> ;
+	foaf:mbox <mailto:klimt@example.com> .
+
+<#beksinski_z>
+	a dbo:Artist ;
+	a dbo:Customer ;
+	foaf:name "beksinski_z" ;
+	foaf:firstName "Zbigniew" ;
+	foaf:lastName "Beksiński" ;
+	foaf:phone <tel:+1.555.222.1234> ;
+	foaf:mbox <mailto:beksinskiz@example.com> .
+
+<#workOfArt/1>
+	dc:title       "Walking on the Beach in Corfu" ;
+    	dc:description "Photograph taken at 6:00 am on Corfu with two models" ;
+    	dc:creator     <#jkowalski> ;
+	a dbr:Sculpture .
+
+<#workOfArt/2>
+	dc:title       "The kiss" ;
+    	dc:description "Beautiful painting with gold paint" ;
+    	dc:creator     <#gustav_klimt> ;
+	a dbr:Painting .
+
+<#workOfArt/3>
+	dc:title       "Untitled 'ZIES'" ;
+    	dc:description "The nightmare" ;
+    	dc:creator     <#beksinski_z> ;
+	a dbr:Drawing .
+
+<#workOfArt/4>
+	dc:title       "Untitled 'Stone Islands'" ;
+    	dc:description "Some stone islands" ;
+    	dc:creator     <#beksinski_z> ;
+	a dbr:Painting .
