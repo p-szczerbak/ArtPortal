@@ -15,7 +15,7 @@
     "js-yaml": "^3.10.0",
     "n3": "^1.1.1",
     "rdfstore": "^0.9.17",
-    "sequelize": "^4.43.2",
+    "sequelize": "^5.15.1",
     "sqlite3": "^4.0.8",
     "swagger": "^0.7.5",
     "swagger-express-mw": "^0.7.0",
